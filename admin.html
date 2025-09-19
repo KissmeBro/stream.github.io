@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stream Bot Private Commands</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Plus Jakarta Sans', sans-serif; }
+body { min-height:100vh; background:linear-gradient(135deg, #0f2027, #203a43, #2c5364); color:#eee; display:flex; flex-direction:column; align-items:center; padding:40px 15px; }
+h1 { font-size:1.8rem; margin-bottom:30px; color:#ff6f61; text-align:center; padding:6px 15px; border-radius:12px; background:linear-gradient(135deg, rgba(255,111,97,0.2), rgba(255,255,255,0.1)); display:inline-block; animation:fadeBG 4s ease-in-out infinite alternate; }
+@keyframes fadeBG { 0% { background-position:0% 50%; } 50% { background-position:100% 50%; } 100% { background-position:0% 50%; } }
+.cards { display:grid; grid-template-columns:repeat(2,1fr); gap:15px; width:100%; max-width:600px; }
+.card { background:rgba(20,30,40,0.8); border-radius:15px; padding:12px 10px; display:flex; flex-direction:column; gap:5px; position:relative; cursor:pointer; transition:transform 0.2s ease, background 0.2s ease; }
+.card:hover { transform:translateY(-4px); background:rgba(25,40,55,0.85); }
+.card code { font-weight:600; font-size:0.88rem; background:rgba(40,50,60,0.6); color:#ffb86c; padding:4px 6px; border-radius:6px; display:block; position:relative; opacity:0.85; z-index:1; transition: opacity 0.25s ease, z-index 0.25s ease; }
+.card:hover code { opacity:1; z-index:3; }
+.card p { font-size:0.82rem; color:#cfd8dc; line-height:1.3; margin:0; }
+.label { position:absolute; top:6px; left:8px; font-size:0.55rem; font-weight:600; padding:2px 5px; border-radius:4px; color:#fff; text-transform:uppercase; background:#ff6f61; border:2px solid #e65b50; transition: transform 0.2s, background 0.2s, opacity 0.25s ease; z-index:2; }
+footer { margin-top:40px; font-size:0.8rem; color:#aaa; text-align:center; }
+.particles { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:-1; }
+.particle { position:absolute; width:3px; height:3px; background:#ffb86c; border-radius:50%; opacity:0.4; animation:float linear infinite; }
+@keyframes float { 0% { transform:translateY(0) translateX(0); opacity:0.3; } 50% { transform:translateY(-25px) translateX(10px); opacity:0.6; } 100% { transform:translateY(-50px) translateX(-5px); opacity:0.3; } }
+@media (max-width:500px){ .cards { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<h1>Private Commands</h1>
+
+<div class="cards">
+    <div class="card"><span class="label">owner</span><code>actives</code><p>Show active streams in all groups</p></div>
+    <div class="card"><span class="label">owner</span><code>stop &lt;short_id&gt;</code><p>Stop a stream by short id</p></div>
+    <div class="card"><span class="label">owner</span><code>stream &lt;short_id&gt; &lt;name&gt;</code><p>Start streaming in selected group</p></div>
+    <div class="card"><span class="label">owner</span><code>change &lt;short_id&gt; &lt;name&gt;</code><p>Change stream in selected group</p></div>
+    <div class="card"><span class="label">owner</span><code>quality &lt;short_id&gt; &lt;low|medium|max&gt;</code><p>Change quality</p></div>
+    <div class="card"><span class="label">owner</span><code>auto &lt;short_id&gt; &lt;seconds&gt;</code><p>Set auto-delete</p></div>
+    <div class="card"><span class="label">owner</span><code>title &lt;short_id&gt; [new_title]</code><p>View or change title</p></div>
+    <div class="card"><span class="label">owner</span><code>chats</code><p>Show groups and short ids</p></div>
+    <div class="card"><span class="label">owner</span><code>state &lt;short_id&gt;</code><p>Show live state for short id</p></div>
+</div>
+
+<footer>StreamRTC - Private Commands</footer>
+
+<div class="particles"></div>
+<script>
+const particles = document.querySelector('.particles');
+for(let i=0;i<40;i++){
+    let p = document.createElement('div');
+    p.classList.add('particle');
+    p.style.left=Math.random()*100+'vw';
+    p.style.top=Math.random()*100+'vh';
+    p.style.animationDuration=(4+Math.random()*4)+'s';
+    p.style.width=(2+Math.random()*4)+'px';
+    p.style.height=p.style.width;
+    p.style.opacity=Math.random()*0.5+0.2;
+    particles.appendChild(p);
+}
+</script>
+
+</body>
+</html>
